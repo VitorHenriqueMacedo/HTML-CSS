@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de QI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        #quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .option {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div class="question" id="question1">
+        <p>1. Qual é o número que vem a seguir nesta sequência: 2, 3, 5, 7, 11, …?</p>
+        <div class="options" data-question="1">
+            <div class="option" data-option="A">A) 13 (são números primos)</div>
+            <div class="option" data-option="B">B) 15</div>
+            <div class="option" data-option="C">C) 17</div>
+            <div class="option" data-option="D">D) 19</div>
+        </div>
+    </div>
+
+    <div class="question" id="question2">
+        <p>2. Se todos os Blops são Razzies e todos os Razzies são Lazzies, todos os Blops são definitivamente Lazzies?</p>
+        <div class="options" data-question="2">
+            <div class="option" data-option="A">A) Sim</div>
+            <div class="option" data-option="B">B) Não</div>
+        </div>
+    </div>
+
+    <!-- Adicione as demais perguntas aqui seguindo o mesmo formato -->
+
+    <button onclick="submitAnswer()">Enviar Respostas</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function submitAnswer() {
+        const questions = document.querySelectorAll('.question');
+        let correctAnswers = 0;
+
+        questions.forEach(question => {
+            const selectedOption = question.querySelector('.option:hover');
+            if (selectedOption) {
+                const isCorrect = selectedOption.getAttribute('data-option') === 'A';
+                if (isCorrect) {
+                    correctAnswers++;
+                }
+            }
+        });
+
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = `Você acertou ${correctAnswers} de ${questions.length} perguntas.`;
+    }
+</script>
+
+</body>
+</html>
